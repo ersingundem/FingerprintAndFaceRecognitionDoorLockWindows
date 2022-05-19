@@ -5,5 +5,7 @@ face-recognition-models==0.3.0
 imutils==0.5.4
 numpy==1.22.3
 opencv-python==4.5.5.64
-Pillow==9.1.0
-RPi.GPIO==0.7.1
+Pillow==9.1.1
+opencv-contrib-python
+opencv-contrib-python-headless
+
