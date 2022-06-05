@@ -1,7 +1,9 @@
 import cv2
 import numpy as np
 import os
-
+import doorlock
+import time
+lockstate=0
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('trainer/trainer.yml')
 cascadePath = "haarcascade_frontalface_default.xml"
@@ -18,7 +20,8 @@ def facerecognizer():
 
     minW = 0.1 * cam.get(3)
     minH = 0.1 * cam.get(4)
-
+    lockstate = 0
+    closestate = 0
     while True:
         ret, img = cam.read()
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -36,18 +39,30 @@ def facerecognizer():
             if (confidence < 50):
                 id = names[id]
                 confidence = "  {0}%".format(round(100 - confidence))
+                lockstate = lockstate + 1
             else:
                 id = "unknown"
                 confidence = "  {0}%".format(round(100 - confidence))
+                closestate = closestate + 1
+
 
             cv2.putText(img, str(id), (x + 5, y - 5), font, 1, (255, 255, 255), 2)
             cv2.putText(img, str(confidence), (x + 5, y + h - 5), font, 1, (255, 255, 0), 1)
 
         cv2.imshow('Face Recognition', img)
-
+        if lockstate == 60:
+            doorlock.doorlockopen(id)
+            break
+        if closestate == 60:
+            doorlock.doorlockclose()
+            break
         k = cv2.waitKey(10) & 0xff
         if k == 27:
             break
+
+
+
+
 
     print("\n [INFO] Exiting Program and cleanup stuff")
     cam.release()
