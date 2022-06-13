@@ -120,17 +120,17 @@ class FingerPrint:
         if ret & 0xffffffff != 0x0:
             print(hex(ret & 0xffffffff))
             raise Exception("Identify Error")
-        print(f"Unit ID\t:{hex(self.unit_id.value)}")
-        print(f"Sub Factor\t:{hex(self.subfactor.value)}")
-        print(f"Identity Type\t: {self.identity.Type}")
-        print(f"Identity AccountSid Data\t: {list(self.identity.Value.AccountSid.Data)[0:self.identity.Value.AccountSid.Size]}")
-        print(f"Identity AccountSid Size\t: {self.identity.Value.AccountSid.Size}")
-        print(f"Rejected Details:\t{hex(reject_detail.value)}")
+        #print(f"Unit ID\t:{hex(self.unit_id.value)}")
+        return hex(self.subfactor.value)
+        #print(f"Identity Type\t: {self.identity.Type}")
+        #print(f"Identity AccountSid Data\t: {list(self.identity.Value.AccountSid.Data)[0:self.identity.Value.AccountSid.Size]}")
+        #print(f"Identity AccountSid Size\t: {self.identity.Value.AccountSid.Size}")
+        #print(f"Rejected Details:\t{hex(reject_detail.value)}")
 
     def verify(self):
         match = ctypes.c_bool(0)
         reject_detail = ctypes.c_uint32()
-        # get identity
+
         self.get_current_user_identity()
         ret = lib.WinBioVerify(self.session_handle, ctypes.byref(self.identity),
                                self.subfactor, ctypes.byref(self.subfactor),

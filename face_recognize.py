@@ -11,8 +11,10 @@ faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-id = 2
-names = ['', 'Ersin', 'Emin']
+
+
+names=["","Ersin","Emin"]
+
 def facerecognizer():
     cam = cv2.VideoCapture(0)
     cam.set(3, 640)
