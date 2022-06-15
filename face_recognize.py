@@ -11,8 +11,6 @@ faceCascade = cv2.CascadeClassifier(cascadePath);
 
 font = cv2.FONT_HERSHEY_SIMPLEX
 
-
-
 names = []
 with open(r'usernames', 'r') as fp:
     for line in fp:
@@ -65,9 +63,6 @@ def facerecognizer():
         k = cv2.waitKey(10) & 0xff
         if k == 27:
             break
-
-
-
 
 
     print("\n [INFO] Exiting Program and cleanup stuff")

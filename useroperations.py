@@ -249,3 +249,5 @@ def factoryreset():
         except Exception as error:
             print(error)
     print("Trainer Path is cleaned")
+    os.remove("usernames")
+    print("Users are removed.")
