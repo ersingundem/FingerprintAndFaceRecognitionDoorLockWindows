@@ -13,7 +13,11 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 
 
 
-names=["","Ersin","Emin"]
+names = []
+with open(r'usernames', 'r') as fp:
+    for line in fp:
+        x = line[:-1]
+        names.append(x)
 
 def facerecognizer():
     cam = cv2.VideoCapture(0)

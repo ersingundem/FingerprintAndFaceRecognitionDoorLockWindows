@@ -4,20 +4,20 @@ import pyttsx3
 
 engine = pyttsx3.init()
 
-arduino = serial.Serial(port='COM3', baudrate=9600)
+arduino = serial.Serial(port='COM7', baudrate=9600)
 
 def sendopensignaltoarduino():
-    arduino.write(bytes('o', 'utf-8'))
+    arduino.write(str.encode('1'))
 
 def sendclosesignaltoarduino():
-    arduino.write(bytes('c', 'utf-8'))
+    arduino.write(str.encode('1'))
 
 def doorlockopen(id):
 
     engine.say("Face Verified, Door will be open in 5 seconds.")
     engine.runAndWait()
-    #time.sleep(2)
-    #sendopensignaltoarduino()
+    time.sleep(2)
+    sendopensignaltoarduino()
     engine.say("Door is open. Welcome"+id)
     engine.runAndWait()
 

@@ -14,7 +14,6 @@ def fingerprints():
     myFP = FingerPrint()
     try:
         myFP.open()
-
         global fingerprint_scan
         fingerprint_scan = tk.Tk()
         fingerprint_scan.title("Fingerprint")
@@ -48,7 +47,6 @@ def fingerprints():
 
 
 def login():
-
     with open('encryptedPWD.txt') as f:
         encpwd = ''.join(f.readlines())
         encpwdbyt = bytes(encpwd, 'utf-8')
